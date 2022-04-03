@@ -61,6 +61,17 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-
+  if (!nums.length) {
+    return 0;
+  }
+  // 声明快慢指针i、j;
+  let i = 0;
+  for (let j = 1; j < nums.length; j++) {
+    // 当下标 j 与 下标 i 不相等时，下标 i 加 1，等于下标 j 的值；
+    if (nums[j] !== nums[i]) {
+      nums[++i] = nums[j];
+    }
+  }
+  return i + 1;
 };
 //leetcode submit region end(Prohibit modification and deletion)
