@@ -53,6 +53,7 @@ var twoSum = function(nums, target) {
   if (!nums.length) {
     return [];
   }
+  // 生成 hash 表
   let map = new Map();
   for (let i = 0; i < nums.length; i++) {
     let num = target - nums[i];
