@@ -50,6 +50,16 @@
  * @return {number[]}
  */
 var twoSum = function(nums: any, target: any) {
-
+    if (!nums.length) {
+        return [];
+    }
+    let map = new Map(), len:number = nums.length;
+    for (let i = 0; i < len; i++) {
+        const num:number = target - nums[i];
+        if (map.has(num)) {
+            return [map.get(num), i];
+        }
+        map.set(nums[i], i);
+    }
 };
 //leetcode submit region end(Prohibit modification and deletion)
