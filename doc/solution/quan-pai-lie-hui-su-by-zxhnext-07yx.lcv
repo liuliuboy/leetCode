@@ -1,0 +1,105 @@
+#### 1. 解题思路
+
+可以使用回溯算法，将不符合要求的排除掉，套用代码模版
+
+* JavaScript
+
+```JavaScript
+result = [];
+function backtrack (path, list) {
+    if (满足条件) {
+        result.push(path);
+        return
+    }
+
+    for () {
+        // 做选择(前序遍历)
+        backtrack (path, list)
+        // 撤销选择(后续遍历)
+    }
+}
+```
+
+其实也可以理解为DFS。也可以理解为先序和后序遍历，在先序遍历时做选择，后序遍历撤销选择。
+
+解题步骤：
+1. 用递归模拟出所有情况。
+2. 遇到包含重复元素的情况，就回溯。
+3. 收集所有到达递归终点的情况，并返回。
+
+#### 2. 代码实现
+
+* JavaScript
+
+```JavaScript
+var permute = function(nums) {
+    const res = [];
+    backtrack(nums, []);
+    return res;
+    function backtrack(nums, track) {
+        if (track.length === nums.length) {
+            res.push(track);
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (track.includes(nums[i])) { continue; };
+            track.push(nums[i]);
+            // 这里我们拷贝一份，因为后续操作会修改原数组。
+            const newTrack = [...track];
+            backtrack(nums, newTrack);
+            // 递归到该层时将元素还原。
+            track.pop();
+        }
+    }
+};
+```
+
+* TypeScript
+
+```TypeScript
+function permute(nums: number[]): number[][] {
+    const res = [];
+    backtrack(nums, []);
+    return res;
+    function backtrack(nums, track) {
+        if (track.length === nums.length) {
+            res.push(track);
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (track.includes(nums[i])) continue;
+            track.push(nums[i]);
+            const newTrack = [...track];
+            backtrack(nums, newTrack);
+            track.pop();
+        }
+    }
+};
+```
+
+优化后：
+
+* JavaScript
+
+```JavaScript
+var permute = function(nums) {
+    const res = [];
+    backtrack([]);
+    return res;
+    function backtrack(path) {
+        if(path.length === nums.length) {
+            res.push(path);
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (path.includes(nums[i])) { continue; }
+            backtrack(path.concat(nums[i]));
+        }
+    }
+};
+```
+
+#### 3. 复杂度分析
+
+时间复杂度O(n!) n!=1*2*3*4...*(n-1)*n
+空间复杂度o(n)(递归深度)

@@ -38,29 +38,26 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 function permute(nums: number[]): number[][] {
-    let list:number[] = [];
-    return backtrack(list, [], nums);
+    let list:number[][] = [];
+    backTrack(list, [], nums);
+    return list;
 };
 
-/**
- * @param list 返回的数据
- * @param temp 缓存当前存储的数字
- * @param nums 当前的数组
- */
-function backtrack(list:number[], temp:number[], nums:number[]) {
-    // 终止条件
-    if(temp.length === nums.length) {
+function backTrack(list:number[][], temp:number[], nums:number[]) {
+    // 终止的条件
+    if (temp.length === nums.length) {
+        // 放入
         return list.push([...temp]);
     }
     for (let i = 0; i < nums.length; i++) {
         if (temp.includes(nums[i])) {
             continue;
         }
-        // 放入元素
+        // 放入模板中
         temp.push(nums[i]);
-        // 递归继续放入数字
-        backtrack(list, temp, nums);
-        // 清除放入里面的元素
+        // 递归循环
+        backTrack(list, temp, nums);
+        // 清除放入模板中的树
         temp.pop();
     }
 }

@@ -1,0 +1,38 @@
+[详细刷题视频合集](https://xiaochen1024.com/series/6196129fc1553b002e57bef5/6196208ec1553b002e57bef6)      [本题视频讲解](https://xiaochen1024.com/video?id=62861214ede03c002e46b21d)
+[刷题笔记](https://xiaochen1024.com/courseware/60b4f11ab1aa91002eb53b18)
+一种深度优先遍历的方式，回溯思想，类似题目 组合总和, 组合总和II，
+写回溯比较关键的就在于确定回溯的条件来设置参数和编写逻辑，模板都类似。
+
+*
+
+```
+var permute = function(nums) {
+     // 保存最终的结果
+    const res = []
+    // 用来记录每一步排列中，数字是否已经使用
+    const used = new Array(nums.length).fill(false)
+    function _permute (nums, index, p) {
+       const len = nums.length
+       if (len === index) {
+           res.push(p)
+           return
+       }
+       for (let i = 0; i < len; i++) {
+           if (!used[i]) {
+              p.push(nums[i])
+              used[i] = true
+              const p1 = [...p]
+              _permute(nums, index + 1, p1)
+               // 这一轮使用后，回溯，下一轮还可以使用
+              p.pop()
+              used[i] = false
+           }
+       }
+       return
+    }
+    _permute(nums, 0, [])
+    return res
+};
+
+```
+
