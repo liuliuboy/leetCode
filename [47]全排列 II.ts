@@ -33,25 +33,25 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 function permuteUnique(nums: number[]): number[][] {
-    let list:number[][] = [];
-    list = backTrack(list, [], nums);
-    return list;
-}
-
-function backTrack(list:number[][], temp:number[], nums:number[]) {
-    // 终止条件
-    if (temp.length === nums.length) {
-        return list.push([...temp]);
-    }
-    // 循环
-    for (let i = 0; i < nums.length; i++) {
-        if (temp.includes(nums[i])) {
-            continue;
+    let ans:any[] = [];
+    const vis:boolean[] = new Array(nums.length).fill(false);
+    const backtrack = (idx:number, perm:number[]) => {
+        if (idx === nums.length) {
+            ans.push(perm.slice());
+            return;
         }
-        temp.push(nums[i]);
-        backTrack(list, temp, nums);
-        temp.pop();
+        for (let i = 0; i < nums.length; ++i) {
+            if (vis[i] || (i > 0 && nums[i] === nums[i - 1] && !vis[i - 1])) {
+                continue;
+            }
+            perm.push(nums[i]);
+            vis[i] = true;
+            backtrack(idx + 1, perm);
+            vis[i] = false;
+            perm.pop();
+        }
     }
+    nums.sort((a, b) => a - b);
+    backtrack(0, []);
+    return ans;
 }
-
-//leetcode submit region end(Prohibit modification and deletion)
