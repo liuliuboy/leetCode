@@ -39,17 +39,24 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * 贪心算法
+ * @param g
+ * @param s
+ */
 function findContentChildren(g: number[], s: number[]): number {
-    g = g.sort((a, b) => a - b);
-    s = s.sort((a, b) => a - b);
-    let res:number = 0;
-    let index = s.length - 1;
+    g.sort((a, b) => a - b);
+    s.sort((a, b) => a - b);
+    // 从后向前遍历，优先满足胃口最大的值
+    let sMax:number = s.length - 1; // 饼干的个数
+    let num:number = 0; // 满足人的个数
     for (let i = g.length; i >= 0; i--) {
-        if (s[index] >=0 && s[index] >= g[i]) {
-            index--;
-            res++;
+        // 饼干 >= 0 && 饼干的个数 >= 小朋友的胃口
+        if (s[sMax] >= 0 && s[sMax] >= g[i]) {
+            sMax--;
+            num++; // 个数加一
         }
     }
-    return res;
-};
+    return num;
+}
 //leetcode submit region end(Prohibit modification and deletion)

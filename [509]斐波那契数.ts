@@ -41,11 +41,20 @@
 // 0 <= n <= 30
 //
 //
-// Related Topics 递归 记忆化搜索 数学 动态规划 👍 527 👎 0
+// Related Topics 递归 记忆化搜索 数学 动态规划 👍 524 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
 function fib(n: number): number {
+    // if (n <= 1) {
+    //     return n;
+    // }
+    // return fib(n - 1) + fib(n - 2);
 
-};
+    let dp = [0, 1];
+    for (let i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+}
 //leetcode submit region end(Prohibit modification and deletion)

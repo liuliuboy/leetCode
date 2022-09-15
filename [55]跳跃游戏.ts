@@ -36,9 +36,8 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 function canJump(nums: number[]): boolean {
-    let cover:number = 0; // 最大数及步数
+    let cover:number = 0;
     for (let i = 0; i <= cover; i++) {
-        // 获取最大值 cover 限制循环次数
         cover = Math.max(cover, i + nums[i]);
         if (cover >= nums.length - 1) {
             return true;
