@@ -46,15 +46,44 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 function fib(n: number): number {
+    // let memo:number[] = [];
+    // return helper(memo, n)
+
     // if (n <= 1) {
     //     return n;
     // }
     // return fib(n - 1) + fib(n - 2);
 
-    let dp = [0, 1];
-    for (let i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
+    // let dp = [0, 1];
+    // for (let i = 2; i <= n; i++) {
+    //     dp[i] = dp[i - 1] + dp[i - 2];
+    // }
+    // return dp[n];
+    if (n <= 1) {
+        return n;
     }
-    return dp[n];
+    let dp1:number = 0, dp2:number = 1, dp3:any;
+    for (let i = 2; i <= n; i++) {
+        dp3 = dp1 + dp2;
+        dp1 = dp2;
+        dp2 = dp3;
+    }
+    return dp3;
+}
+
+/**
+ * 递推公式 + 备忘录
+ * @param memo
+ * @param n
+ */
+function helper(memo:number[], n:number):number {
+    if (n <= 1) {
+        return n;
+    }
+    if (memo[n]) {
+        return memo[n];
+    }
+    memo[n] = helper(memo, n - 1) + helper(memo, n -2);
+    return  memo[n];
 }
 //leetcode submit region end(Prohibit modification and deletion)
