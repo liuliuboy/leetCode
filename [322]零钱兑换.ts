@@ -45,15 +45,12 @@ function coinChange(coins: number[], amount: number): number {
         return 0;
     }
     let dp:any[] = Array(amount + 1).fill(Infinity);
-    console.log(dp, '111')
     dp[0] = 0;
     // 循环所有钱
     for (let i = 0; i < coins.length; i++) { // [1, 2, 5]
         // coins[i] 1
         for (let j = coins[i]; j <= amount; j++) {
-            console.log(dp[j], '22222')
             dp[j] = Math.min(dp[j - coins[i]] + 1, dp[j]);
-            console.log(dp, '333333')
         }
     }
     console.log(dp)
