@@ -18,13 +18,10 @@
  * @return {ListNode}
  */
 var rotateRight = function(head, k) {
-  if (k === 0) {
+  if (k === 0 || head === null || head.next === null) {
     return head;
   }
-  let dummy = {
-    next: head
-  }
-  let tmp = dummy;
+  let tmp = head;
   let len = 1;
   // 循环到最后一个节点
   while (tmp.next !== null) {
@@ -32,8 +29,17 @@ var rotateRight = function(head, k) {
     len++;
   }
   // 最后一个节点指向头结点形成环
+  let add = len - k % len;
+  if (add === len) {
+    return head
+  }
+
   tmp.next = head;
-  k = len - k % len;
+  while (add) {tmp = tmp.next; add--}; 
+  
+  head = tmp.next;
+  tmp.next = null;
+  return head;
 };
 // @lc code=end
 
