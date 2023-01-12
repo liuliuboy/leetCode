@@ -22,6 +22,7 @@ function addTwoNumbers(l1, l2) {
   }
   let curr = dummy;
   let carry = 0;
+  // 循环终止条件 l1 不为 null || l2 不为 null || carry 进位数不为 0 进位数有值也要添加到链表尾部
   while (l1 !== null || l2 !== null || carry !== 0) {
     let x = l1 ? l1.val : 0;
     let y = l2 ? l2.val : 0;
