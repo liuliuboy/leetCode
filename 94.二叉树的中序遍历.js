@@ -16,18 +16,39 @@
 /**
  * @param {TreeNode} root
  * @return {number[]}
+ * 递归
  */
-var inorderTraversal = function(root) {
+// var inorderTraversal = function(root) {
+//   let arr = [];
+//   let traversal = (node) => {
+//     if (node !== null) {
+//       traversal(node.left);
+//       arr.push(node.val);
+//       traversal(node.right);
+//     }
+//   }
+//   traversal(root);
+//   return arr;
+// };
+
+/**
+ * 迭代
+ * 模拟栈
+ */
+var inorderTraversal = function (root) {
+  let treeArr = [];
   let arr = [];
-  let traversal = (node) => {
-    if (node !== null) {
-      traversal(node.left);
-      arr.push(node.val);
-      traversal(node.right);
+  while (root || treeArr.length) {
+    // 先把左边放入栈中
+    while (root) {
+      treeArr.push(root);
+      root = root.left;
     }
+    let node = treeArr.pop();
+    arr.push(node.val);
+    root = node.right;
   }
-  traversal(root);
   return arr;
-};
+}
 // @lc code=end
 
