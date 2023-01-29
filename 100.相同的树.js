@@ -73,10 +73,12 @@
 
 var isSameTree = function (p, q) {
   var recursive = (nodeP, nodeQ) => {
+    // 比较两个节点是否同时为 null
     if (nodeP === null && nodeQ === null) {
       return true;
     }
   
+    // 两节点不相同返回 false
     if (nodeP === null || nodeQ === null) {
       return false;
     }
