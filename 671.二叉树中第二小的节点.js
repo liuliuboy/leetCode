@@ -29,6 +29,7 @@ var findSecondMinimumValue = function(root) {
   }
   // 去重+排序
   let arr = [...new Set(res)].sort();
+  // 直接取第二个值
   return arr[1] ? arr[1] : -1;
 };
 // @lc code=end
