@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=1038 lang=javascript
+ * @lc app=leetcode.cn id=538 lang=javascript
  *
- * [1038] 从二叉搜索树到更大和树
+ * [538] 把二叉搜索树转换为累加树
  */
 
 // @lc code=start
@@ -16,25 +16,22 @@
 /**
  * @param {TreeNode} root
  * @return {TreeNode}
+ * 深度优先，倒序中序遍历
  */
-var bstToGst = function(root) {
-  let num = 0;
+var convertBST = function(root) {
   let stk = [];
+  let num = 0;
   let node = root;
   while (stk.length !== 0 || node !== null) {
-    // 遍历右树
     while (node !== null) {
       stk.push(node);
       node = node.right;
     }
-    if (stk.length !== 0) {
-      // 从栈中弹出
+
+    if (stk.length !== null) {
       node = stk.pop();
-      // 节点与上一个节点的和相加
       node.val += num;
-      // 获取当前节点的值
       num = node.val;
-      // 获取节点的左子树
       node = node.left;
     }
   }
