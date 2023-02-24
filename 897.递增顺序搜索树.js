@@ -21,6 +21,7 @@ var increasingBST = function(root) {
   if (root === null) {
     return null;
   }
+  // 新 tree
   let tree = new TreeNode();
   let cur = tree;
   let stk = [];
