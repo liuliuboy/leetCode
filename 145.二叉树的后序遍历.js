@@ -36,19 +36,6 @@
  * 顺序 左 右 根
  */
 var postorderTraversal = function(root) {
-  // if (root === null) {
-  //   return [];
-  // }
-  // let stk = [root];
-  // let res = [];
-  // while (stk.length) {
-  //   let node = stk.pop();
-  //   res.push(node.val);
-  //   node.left && stk.push(node.left);
-  //   node.right && stk.push(node.right);
-  // }
-  // return res.reverse();
-
   let res = [];
   if (root === null) {
     return res

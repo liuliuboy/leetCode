@@ -18,14 +18,10 @@
  * @return {TreeNode}
  */
 var increasingBST = function(root) {
-  if (root === null) {
-    return null;
-  }
-  // 新 tree
   let tree = new TreeNode();
-  let cur = tree;
   let stk = [];
-  while (stk.length || root !== null) {
+  let cur = tree;
+  while (stk.length !== 0 || root !== null) {
     while (root !== null) {
       stk.push(root);
       root = root.left;

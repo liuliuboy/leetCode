@@ -18,18 +18,16 @@
  * @return {number[]}
  */
 var preorder = function(root) {
+  let ret = [];
   if (root === null) {
-    return [];
+      return ret;
   }
   let stk = [root];
-  let ret = [];
   while (stk.length) {
-    // 栈
-    let node = stk.pop();
+    let node = stk.shift();
     ret.push(node.val);
-    // 倒序 后进先出 原则
-    let i = node.children ? node.children.length - 1 : 0;
-    for (i; i >= 0; i--) {
+    let i = node.children ? node.children.length : 0;
+    for (i;  i > 0; i--) {
       stk.push(node.children[i]);
     }
   }

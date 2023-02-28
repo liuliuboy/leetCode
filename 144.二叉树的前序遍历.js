@@ -21,9 +21,9 @@ var preorderTraversal = function(root) {
    // 递归
    let res = [];
    let dfs = (cur) => {
-       res.push(cur.val);
-       cur.left && dfs(cur.left);
-       cur.right && dfs(cur.right);
+      res.push(cur.val);
+      cur.left && dfs(cur.left);
+      cur.right && dfs(cur.right);
    }
    root && dfs(root);
    return res;
