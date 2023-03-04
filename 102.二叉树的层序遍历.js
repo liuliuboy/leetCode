@@ -47,8 +47,8 @@ var levelOrder = function(root) {
       ret[leve] = [];
     }
     ret[leve].push(node.val);
-    dfs(node.left, leve + 1)
-    dfs(node.right, leve + 1)
+    dfs(node.left, leve + 1);
+    dfs(node.right, leve + 1);
   };
 
   dfs(root, 0);
