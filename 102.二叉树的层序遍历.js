@@ -22,30 +22,36 @@ var levelOrder = function(root) {
   // if (root === null) {
   //   return [];
   // }
-  let ret = [];
+  // let ret = [];
   // let stk = [root];
   // while (stk.length !== 0) {
   //   let len = stk.length;
-  //   ret.push([]);
+  //   let arr = [];
   //   for (let i = 0; i < len; i++) {
-  //     const node = stk.shift();
-  //     ret[ret.length - 1].push(node.val);
+  //     const node = stk.shift(); // 先进先出
+  //     arr.push(node.val);
   //     node.left && stk.push(node.left);
   //     node.right && stk.push(node.right);
   //   }
+  //   ret.push(arr);
   // }
   // return ret;
 
-  const traversal = (node, arr) => {
+  // 深度优先 递归
+  let ret = [];
+  const dfs = (node, leve) => {
     if (node === null) {
-      return null;
+      return [];
     }
-    arr.push(node.val)
-    ret.push();
-    traversal(node.left, arr);
-    traversal(node.right, arr);
+    if (!ret[leve]) {
+      ret[leve] = [];
+    }
+    ret[leve].push(node.val);
+    dfs(node.left, leve + 1);
+    dfs(node.right, leve + 1);
   };
-  traversal(root, [])
+
+  dfs(root, 0);
   return ret;
 };
 // @lc code=end
