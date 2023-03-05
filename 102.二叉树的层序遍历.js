@@ -19,21 +19,33 @@
  * 迭代 BFS 广度优先搜索
  */
 var levelOrder = function(root) {
-  if (root === null) {
-    return [];
-  }
+  // if (root === null) {
+  //   return [];
+  // }
   let ret = [];
-  let stk = [root];
-  while (stk.length !== 0) {
-    let len = stk.length;
-    ret.push([]);
-    for (let i = 0; i < len; i++) {
-      const node = stk.shift();
-      ret[ret.length - 1].push(node.val);
-      node.left && stk.push(node.left);
-      node.right && stk.push(node.right);
+  // let stk = [root];
+  // while (stk.length !== 0) {
+  //   let len = stk.length;
+  //   ret.push([]);
+  //   for (let i = 0; i < len; i++) {
+  //     const node = stk.shift();
+  //     ret[ret.length - 1].push(node.val);
+  //     node.left && stk.push(node.left);
+  //     node.right && stk.push(node.right);
+  //   }
+  // }
+  // return ret;
+
+  const traversal = (node, arr) => {
+    if (node === null) {
+      return null;
     }
-  }
+    arr.push(node.val)
+    ret.push();
+    traversal(node.left, arr);
+    traversal(node.right, arr);
+  };
+  traversal(root, [])
   return ret;
 };
 // @lc code=end
