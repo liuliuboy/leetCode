@@ -27,6 +27,19 @@ var rightSideView = function(root) {
   let stk = [root];
   while (stk.length) {
     let len = stk.length;
+    // while (len--) {
+    //   let node = stk.shift();
+    //   if (len === 0) {
+    //     ret.push(node.val);
+    //   }
+    //   if (node.left !== null) {
+    //     stk.push(node.left);
+    //   }
+    //   if (node.right !== null) {
+    //     stk.push(node.right);
+    //   }
+    // }
+
     for (let i = 0; i < len; i++) {
       let node = stk.shift();
       if (node.left !== null) {
