@@ -21,21 +21,25 @@ var isValidBST = function(root) {
   if (root === null) {
     return false;
   }
-  let inorder = -Infinity;
-  let stk = [];
-  while (stk.length || root !== null) {
-    while (root !== null) {
-      stk.push(root)
-      root = root.left;
-    }
-    root = stk.pop();
-    if (root.val <= inorder) {
+
+  const isCheck = (node) => {
+    if (node === null) {
       return false;
     }
-    inorder = root.val;
-    root = root.right;
-  }
-  return true;
+    if (node.left === null && node.right === null) {
+      return true;
+    }
+    if (node.left === null || node.right === null) {
+      return false;
+    }
+    if (node.left.val < node.val && node.right.val > node.val) {
+      return true;
+    }
+    return false;
+    isCheck(node.left);
+    isCheck(node.right);
+  };
+  return isCheck(root)
 };
 // @lc code=end
 
