@@ -24,11 +24,11 @@ var preorder = function(root) {
   }
   let stk = [root];
   while (stk.length) {
-    let node = stk.shift();
+    let node = stk.pop();
     ret.push(node.val);
     let i = node.children ? node.children.length : 0;
-    for (i;  i > 0; i--) {
-      stk.push(node.children[i]);
+    for (; i >= 0; i--) {
+      node.children[i] && stk.push(node.children[i]);
     }
   }
   return ret;
